@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>IP GeoGuesser</title>
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+	<header class="header">
+		<h1 class="header__title">IP GeoGuesser</h1>
+		<div class="header__stats">
+			<div class="stat">
+				<div class="stat__label">Round</div>
+				<div class="stat__value">
+					<span id="currentRound">1</span> / <span id="totalRounds">5</span>
+				</div>
+			</div>
+			<div class="stat">
+				<div class="stat__label">Score</div>
+				<div class="stat__value stat__value--score" id="totalScore">0</div>
+			</div>
+		</div>
+	</header>
+
+	<main class="game">
+		<div class="game__ip-display">
+			<p class="game__ip-label">Find this IP address location</p>
+			<p class="game__ip-address" id="ipDisplay">
+				<span class="game__ip-address--loading">Loading...</span>
+			</p>
+		</div>
+		<div id="map" class="game__map"></div>
+		<div class="game__controls">
+			<button id="guessBtn" class="btn btn--primary" disabled>
+				Select a location first
+			</button>
+		</div>
+	</main>
+
+	<div id="overlay" class="overlay"></div>
+
+	<div id="resultPopup" class="popup popup--result">
+		<h2 class="popup__title">Result</h2>
+		<p class="popup__distance" id="resultDistance"></p>
+		<p class="popup__points">+<span id="resultPoints">0</span> points</p>
+		<p class="popup__location" id="resultLocation"></p>
+		<button id="nextBtn" class="btn btn--primary popup__btn">Next Round</button>
+	</div>
+
+	<div id="finalScreen" class="popup popup--final">
+		<h2 class="popup__title">Game Over!</h2>
+		<p class="popup__final-label">Your final score:</p>
+		<p class="popup__final-score" id="finalScore">0</p>
+		<div class="share">
+			<p class="share__label">Share your result</p>
+			<div class="share__buttons">
+				<button id="shareX" class="btn btn--share btn--x">
+					<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+						<path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+					</svg>
+					Post
+				</button>
+				<button id="copyResult" class="btn btn--share btn--copy">
+					<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+						<rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+						<path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+					</svg>
+					Copy
+				</button>
+			</div>
+		</div>
+		<button id="playAgainBtn" class="btn btn--primary">Play Again</button>
+	</div>
+
+	<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+	<script src="js/geo.js"></script>
+	<script src="js/game.js"></script>
+</body>
+</html>
