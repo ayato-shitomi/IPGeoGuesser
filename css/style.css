@@ -27,6 +27,15 @@ body {
 	color: #e94560;
 }
 
+.header__github {
+	color: #888;
+	transition: color 0.2s;
+}
+
+.header__github:hover {
+	color: #fff;
+}
+
 .header__stats {
 	display: flex;
 	gap: 30px;
