@@ -92,6 +92,24 @@ body {
 .game__ip-address--loading {
 	color: #888;
 	font-style: italic;
+	font-size: 18px;
+}
+
+.adblock-warning {
+	margin-top: 15px;
+	padding: 15px;
+	background: rgba(233, 69, 96, 0.2);
+	border: 1px solid #e94560;
+	border-radius: 5px;
+	font-size: 14px;
+}
+
+.adblock-warning p {
+	margin-bottom: 10px;
+}
+
+.adblock-warning button {
+	margin-top: 5px;
 }
 
 .game__map {

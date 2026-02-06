@@ -2,7 +2,7 @@ const Game = (function() {
 	const CONFIG = {
 		totalRounds: 5,
 		maxScorePerRound: 5000,
-		maxAttempts: 10
+		maxAttempts: 5
 	};
 
 	let state = {
@@ -170,6 +170,22 @@ const Game = (function() {
 		elements.finalScreen.style.display = 'block';
 	}
 
+	function showAdBlockWarning() {
+		elements.ipDisplay.innerHTML = '<span class="game__ip-address--loading">Failed to load IP data</span>';
+
+		if (!document.getElementById('adblockWarning')) {
+			const warning = document.createElement('div');
+			warning.id = 'adblockWarning';
+			warning.className = 'adblock-warning';
+			warning.innerHTML = `
+				<p><strong>Unable to fetch IP location data.</strong></p>
+				<p>If you have an ad blocker enabled, please disable it for this site and reload the page.</p>
+				<button class="btn btn--primary" onclick="location.reload()">Reload</button>
+			`;
+			document.querySelector('.game__ip-display').appendChild(warning);
+		}
+	}
+
 	function getShareText() {
 		const maxScore = CONFIG.totalRounds * CONFIG.maxScorePerRound;
 		const percent = Math.round((state.totalScore / maxScore) * 100);
@@ -216,8 +232,7 @@ const Game = (function() {
 		if (state.currentLocation) {
 			elements.ipDisplay.textContent = state.currentIP;
 		} else {
-			elements.ipDisplay.textContent = 'Error loading IP...';
-			setTimeout(() => startRound(), 1000);
+			showAdBlockWarning();
 		}
 	}
 
